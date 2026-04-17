@@ -6,12 +6,16 @@ AI Playbook 是一个用于管理和组织 AI 相关资源的项目，包括提�
 
 ```
 ai-playbook/
+├── preferences/    # 偏好设置与通用约束
 ├── prompts/        # 提示词集合
 ├── skills/         # 技能集
 └── docs/           # 文档
 ```
 
 ## 目录说明
+
+### preferences/
+存放通用约束和偏好设置，如 Git 规范、代码风格等。
 
 ### prompts/
 存放各种 AI 提示词，按功能或场景分类。
