@@ -1,9 +1,19 @@
 # CLAUDE.md — 全局配置
 
 > 跨项目通用约束，精简至上（< 80 行）
-> 
-> ⚠️ 与 `C:\Users\zmy\.deepseek\instructions.md`（DeepSeek TUI 全局配置）双向同步。
-> 更新前先检查对方文件是否被其他 Agent 修改过。
+>
+> ⚠️ 与 `C:\Users\zmy\.deepseek\instructions.md`（DeepSeek TUI 全局配置）**双向同步**。修改任一方前，先检查另一方是否被其他 Agent 修改过，如有变更先同步再写入。
+> ⚠️ 与 `C:\Users\zmy\.workbuddy\USER.md`（WorkBuddy 用户配置）**双向同步**。修改任一方前，先检查另一方是否被其他 Agent 修改过，如有变更先同步再写入。
+
+---
+
+## ⚠️ 约束引用规范
+
+- **preferences**：所有约束/规则存放于 `D:\github\zmyAI\ai-playbook\preferences`，**每次对话前必须读取**
+  - `git-conventions.md`：Git 规范
+  - `n8n-conventions.md`：n8n 规范
+  - `general-conventions.md`：通用约束（文件修改规范、技能同步规范等）
+- **CLAUDE.md / instructions.md / USER.md**：引用 preferences 中的约束/规则
 
 ---
 
