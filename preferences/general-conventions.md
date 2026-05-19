@@ -24,12 +24,12 @@
 
 - **修改/新建用户级技能时，Agent 必须主动检查并同步到对应目录，无需用户提示**
 - 检查范围：
-  - `D:\github\zmyAI\.trae\skills\` —— 私有技能（如 readings-collector）
+  - `D:\github\zmyAI\skills\` —— 私有技能（如 readings-collector）
   - `D:\github\zmyAI\ai-playbook\skills\` —— 公共技能（默认同步位置）
 - 同步时机：修改/新建技能的同一轮对话中完成，不留到后续会话
 - 技能分类规则：
   - **公共技能**（默认）→ 同步到 `D:\github\zmyAI\ai-playbook\skills\`，内部路径使用**相对路径**
-  - **私有技能**（用户明确说明或放到 `.trae\skills`）→ 同步到 `D:\github\zmyAI\.trae\skills\`，内部路径保留**绝对路径**
+  - **私有技能**（用户明确说明）→ 同步到 `D:\github\zmyAI\skills\`，内部路径保留**绝对路径**
 - 同步原则：优先使用 replace_in_file 修改差异部分，避免整文件覆盖
 
 ---
