@@ -1,19 +1,38 @@
-"""裁切封面图：上裁5% 下裁10%（去掉AI生成标记），保留原图和裁切图"""
+"""裁切封面图/总结卡：四周各裁10%，保留原图和裁切图
+用法：
+  python crop_cover.py <input.png> [--output <output.png>]
+  python crop_cover.py <input.png> --crop 0.08
+"""
+import argparse
 from PIL import Image
 import os
 
-input_path = r"D:\github\zmyAI\zmyAI.github.io\source\_posts\从DeepSeek到TRAE到WorkBuddy\cover_original.png"
-cropped_path = r"D:\github\zmyAI\zmyAI.github.io\source\_posts\从DeepSeek到TRAE到WorkBuddy\cover.png"
+def main():
+    parser = argparse.ArgumentParser(description="裁切图片：四周各裁指定比例")
+    parser.add_argument("input", help="输入图片路径")
+    parser.add_argument("--output", help="输出图片路径（默认: 输入文件名加 _cropped 后缀）")
+    parser.add_argument("--crop", type=float, default=0.08, help="裁切比例（默认0.08即8%）")
+    args = parser.parse_args()
 
-img = Image.open(input_path)
-w, h = img.size
-print(f"原图尺寸: {w}x{h}", flush=True)
+    if not os.path.exists(args.input):
+        print(f"错误：文件不存在 {args.input}", flush=True)
+        return
 
-crop_top = int(h * 0.05)     # 上裁 5%
-crop_bottom = int(h * 0.10)  # 下裁 10%
-cropped = img.crop((0, crop_top, w, h - crop_bottom))
-cropped.save(cropped_path, "PNG")
-print(f"裁切: 上 {crop_top}px, 下 {crop_bottom}px", flush=True)
-print(f"裁切后尺寸: {cropped.size[0]}x{cropped.size[1]}", flush=True)
-print(f"原图保留: {input_path}", flush=True)
-print(f"裁切图: {cropped_path}", flush=True)
+    output = args.output or args.input.replace(".png", "_cropped.png").replace(".jpg", "_cropped.jpg")
+    c = args.crop
+
+    img = Image.open(args.input)
+    w, h = img.size
+    left = int(w * c)
+    top = int(h * c)
+    right = int(w * (1 - c))
+    bottom = int(h * (1 - c))
+    cropped = img.crop((left, top, right, bottom))
+    cropped.save(output, "PNG")
+
+    print(f"原图: {args.input} ({w}x{h})", flush=True)
+    print(f"裁切: 四周各 {c*100:.0f}%", flush=True)
+    print(f"输出: {output} ({cropped.size[0]}x{cropped.size[1]})", flush=True)
+
+if __name__ == "__main__":
+    main()
