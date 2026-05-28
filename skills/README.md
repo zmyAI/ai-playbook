@@ -41,6 +41,7 @@
 | 技能 | 定位 | 核心职责与场景 |
 | :--- | :--- | :--- |
 | **git-commit-helper** | 提交规范 | 根据 git diff 自动分析改动，生成符合规范的 Commit Message，省去构思标题的烦恼。 |
+| **commit** | 用户提交流程 | 按用户 Git 规范执行提交：预检未暂存修改→按文件暂存→基于 diff 写提交信息→展示给用户确认→管道方式 commit→不自动推送。 |
 | **github-actions-creator** | 流水线搭建 | 从零生成 GitHub Actions 工作流（CI/CD/部署/安全扫描），快速建立项目自动化基础。 |
 | **gh-fix-ci** | 故障急救 | 利用 `gh` 命令行工具读取失败日志，自动诊断并修复 GitHub Actions 中失败的 CI 检查。 |
 | **github-workflow-automation** | 日常托管 | 接管 PR 审查、Issue 分类、依赖更新等仓库日常琐事，实现成熟项目的"自动驾驶"。 |
