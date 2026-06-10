@@ -79,6 +79,11 @@ echo 提交信息 | git commit -F -
 ```
 
 Windows shell 下 `-m "消息"` 会保留双引号到提交信息中。必须使用管道方式。
+如果提交信息包含换行，管道方式可能出问题，此时先将提交信息写入 `D:\github\tmp\commit_msg.txt`，再执行：
+
+```bash
+git commit -F D:\github\tmp\commit_msg.txt
+```
 
 **首次提交固定为：** `Initial commit`
 
