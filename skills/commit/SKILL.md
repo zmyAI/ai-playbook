@@ -1,6 +1,6 @@
 ---
 name: commit
-description: 按用户 Git 规范执行提交。触发词：提交、commit、暂存、提交修改。支持 /commit <filepath> 快速提交
+description: 按用户 Git 规范执行提交。触发词：提交、commit、暂存、提交修改、提交并推送、推送。无论用户说什么（"先给消息"、"提交并推送"、"commit"），都必须完整执行 skill 流程：status → add → diff --staged → 基于变更写消息 → 用户确认 → commit。禁止跳过 diff 直接编消息。支持 /commit <filepath> 快速提交
 ---
 
 # commit
@@ -72,18 +72,27 @@ git diff --staged
 - 动词+内容格式，简洁明了
 - 不包含引号
 
-**Windows 提交命令（禁止用 `-m "..."`）：**
+**Windows 提交命令（禁止用 `-m "..."`，也禁止用 `echo/printf | git commit -F -` 提交中文消息）：**
 
-```bash
-echo 提交信息 | git commit -F -
-```
-
-Windows shell 下 `-m "消息"` 会保留双引号到提交信息中。必须使用管道方式。
-如果提交信息包含换行，管道方式可能出问题，此时先将提交信息写入 `D:\github\tmp\commit_msg.txt`，再执行：
+Windows shell 下 `-m "消息"` 会保留双引号到提交信息中；Git Bash/Windows 管道提交中文消息可能产生非 UTF-8 乱码。**必须先将提交信息写入 UTF-8 文件**，再执行：
 
 ```bash
 git commit -F D:\github\tmp\commit_msg.txt
 ```
+
+如需修复上一条提交信息，同样先写入 UTF-8 文件，再执行：
+
+```bash
+git commit --amend -F D:\github\tmp\commit_msg.txt
+```
+
+提交后、推送前必须检查提交标题：
+
+```bash
+git log -1 --pretty=%s
+```
+
+确认标题无乱码后，才允许 push。
 
 **首次提交固定为：** `Initial commit`
 
@@ -113,7 +122,9 @@ git diff --staged   ← 确认实际变更
   ↓
 展示给用户确认       ← 必须等待用户批准
   ↓
-echo 消息 | git commit -F -   ← Windows 管道方式
+git commit -F D:\github\tmp\commit_msg.txt   ← 使用 UTF-8 文件，禁止中文消息走 echo/printf 管道
+  ↓
+git log -1 --pretty=%s              ← 推送前检查标题无乱码
   ↓
 完成（不自动 push）
 ```
