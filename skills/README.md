@@ -1,0 +1,118 @@
+# 🧰 精选 Skills
+
+> 为公众号创作者兼全栈开发者精选的 AI 编程技能集，提升代码质量和工程效率。
+
+这些技能大部分精选自开源社区，经实际项目验证后收录。
+
+## 📦 技能分类
+
+### 🚀 前端技术栈
+
+| 技能 | 定位 | 核心职责与场景 |
+| :--- | :--- | :--- |
+| **angular** | 前端框架 | Angular v20+ 领域的专家技能，专注于 Signals、Standalone Components、Zoneless 及 SSR 等前沿技术实践。 |
+| **senior-frontend** | 前端工程 | 负责 React/Next.js 前端开发全流程，提供组件脚手架、Bundle 分析、前端工程化及 UI 最佳实践。 |
+
+> 双轮驱动，分别支撑 Angular 体系与 React/Next.js 全栈体系，覆盖主流前端技术栈。
+
+### 🏗️ 后端与架构
+
+| 技能 | 定位 | 核心职责与场景 |
+| :--- | :--- | :--- |
+| **backend-architect** | 架构规划 | 负责系统级的架构设计（What/Why），涵盖微服务拆分、API 网关、事件驱动及弹性策略制定。 |
+| **api-design-principles** | 接口契约 | 负责 API 的接口规范与设计原则（How to design），提供 REST/GraphQL 的实施手册和标准化模板。 |
+| **senior-backend** | 工程落地 | 负责后端代码的具体实现与优化（How to build），提供 API 脚手架、数据库调优及性能测试工具。 |
+
+> 三者分层明确，从顶层设计到制定契约，再到最终的代码落地，构成了完整的后端建设体系。
+
+### 🛡️ 质量与安全
+
+| 技能 | 定位 | 核心职责与场景 |
+| :--- | :--- | :--- |
+| **code-reviewer** | 代码层（质量监理） | 负责代码的**整体质量**。检查逻辑漏洞、代码风格、命名规范及基础性能问题，确保代码"写得好、易维护"。 |
+| **senior-qa** | 代码层（质量验证） | 负责代码的**功能验收**。编写测试用例、执行自动化测试、复现Bug，确保功能"跑得通、没毛病"。 |
+| **senior-security** | 应用层（漏洞审计） | 负责**应用与代码安全**。深度扫描SQL注入、XSS、敏感信息泄露等漏洞（OWASP Top 10），确保代码"没后门"。 |
+| **cc-skill-security-review** | 应用层（安全清单） | 负责**标准化安全检查**。基于固定清单（如密钥管理、认证授权）进行合规性核对，充当安全审查的"检查员"。 |
+
+> 这四个技能共同构建了从代码静态检查、动态功能验证到应用层安全审计的立体防护网；而 senior-secops 虽然也属于安全范畴，但因为它管的是服务器和云环境，所以放到了运维与基建板块。
+
+### 🐙 Git 工作流
+
+| 技能 | 定位 | 核心职责与场景 |
+| :--- | :--- | :--- |
+| **git-commit-helper** | 提交规范 | 根据 git diff 自动分析改动，生成符合规范的 Commit Message，省去构思标题的烦恼。 |
+| **commit** | 用户提交流程 | 按用户 Git 规范执行提交：预检未暂存修改→按文件暂存→基于 diff 写提交信息→展示给用户确认→管道方式 commit→不自动推送。 |
+| **github-actions-creator** | 流水线搭建 | 从零生成 GitHub Actions 工作流（CI/CD/部署/安全扫描），快速建立项目自动化基础。 |
+| **gh-fix-ci** | 故障急救 | 利用 `gh` 命令行工具读取失败日志，自动诊断并修复 GitHub Actions 中失败的 CI 检查。 |
+| **github-workflow-automation** | 日常托管 | 接管 PR 审查、Issue 分类、依赖更新等仓库日常琐事，实现成熟项目的"自动驾驶"。 |
+
+> 这五个技能完美串联起从日常提交、流水线搭建、故障急救到进阶托管的全生命周期。
+
+### 测试与自动化工具
+
+| 技能 | 定位 | 核心职责与场景 |
+| :--- | :--- | :--- |
+| **n8n-node-configuration** | 自动化编排配置 | 按操作感知的 n8n 节点配置指南。覆盖节点属性依赖、必填字段、displayOptions 控制逻辑及 patchNodeField 精准编辑。 |
+
+> 与直接执行检查的 QA 技能不同，该技能专注于提供底层的自动化编排能力，帮助开发者将孤立的测试环节串联成高效的自动化流水线。
+
+### 🖥️ 运维与基建 (DevOps)
+
+| 技能 | 定位 | 核心职责与场景 |
+| :--- | :--- | :--- |
+| **senior-devops** | 运维层（自动化运维） | 负责 CI/CD 流水线、容器化（Docker/K8s）、基础设施即代码（IaC）及云平台部署运维，确保发布流程顺畅。 |
+| **senior-secops** | 运维层（基建防御） | 负责基础设施与云安全。配置服务器防火墙、管理云资源权限、监控异常流量，确保运行环境"固若金汤"。 |
+
+> 两者协同互补，既实现了应用交付的全流程自动化，又确保了基础设施的安全合规。
+
+### ✍ 内容创作与学习
+
+| 技能 | 定位 | 核心职责与场景 |
+| :--- | :--- | :--- |
+| **khazix-writer** | 公众号长文写作 | 以卡兹克文风撰写公众号深度长文。 |
+| **article-review-pipeline** | 文章发布流水线 | 编排原稿→平台分发（技术深度版/公众号版）→审稿→封面→多平台发布全流程。 |
+| **wechat-post-html** | 公众号 HTML 排版 | 将 Markdown 文章转为公众号兼容 HTML，支持「极简留白」和「暖色羊皮纸」两种风格，复制粘贴到公众号后台即可发布。 |
+| **wechat-cover-skill** | 公众号封面图 | 公众号封面图生成，支持多种风格和尺寸。 |
+| **humanizer** | AI 文本去味 | 改写 AI 痕迹过重的文字，使其读起来像真人写作，保留原意不变。 |
+| **nuwa** | 思维框架蒸馏 | 花叔开源的女娲 skill。输入人名/需求，自动深度调研→思维框架提炼→生成可运行的人物 Skill。 |
+| **hv-analysis** | 横纵分析法深度研究 | 系统性研究产品/公司/概念/人物的通用框架，纵轴追历史深度，横轴做竞品广度。 |
+| **寓言写作** | 概念学习工具 | 基于 Anthropic Amanda Askell 寓言教学法，通过 AI 生成寓言故事来解释任何抽象概念。 |
+
+### 📡 AI 资讯
+
+| 技能 | 定位 | 核心职责与场景 |
+| :--- | :--- | :--- |
+| **aihot** | AI 资讯查询 | 从 aihot.virxact.com 拉取中文 AI 资讯，生成 markdown 简报。 |
+| **每日热点** | 每日热榜聚合 | 每日 9:00 从多平台（知乎/B站/头条/36氪/雪球/ProductHunt/Reddit 等）获取热榜，归类 AI 相关与财富/理财热点。 |
+
+### 🛠 实用工具
+
+| 技能 | 定位 | 核心职责与场景 |
+| :--- | :--- | :--- |
+| **storage-analyzer** | 磁盘存储分析 | macOS/Windows 只读存储扫描，三级清理建议（🟢可自动/🟡需判断/🔴谨慎），生成交互式 HTML 报告并支持一键删除。 |
+| **watch** | 视频分析 | 下载视频（yt-dlp）→ 提取关键帧（ffmpeg）→ 转录字幕（Whisper），将视频内容交给 AI 分析回答。 |
+
+### 📚 独立参考文档
+
+| 文档 | 说明 |
+| :--- | :--- |
+| `taste-skill.md` | UI 设计品味与前端组件选型指南 |
+| `impeccable.md` | 全栈开发规范，含设计系统与组件提取 |
+| `frontend-design.md` | 前端设计原则与实现模式 |
+| `ai-website-cloner-template.md` | AI 网站克隆模板，从目标站点提取设计令牌并重建 |
+| `gsap-core.md` | GSAP 动画核心库（tween/timeline/scrollTrigger 基础） |
+| `gsap-scrolltrigger.md` | GSAP ScrollTrigger 插件，滚动驱动动画 |
+| `gsap-timeline.md` | GSAP Timeline 序列编排 |
+| `gsap-plugins.md` | GSAP 插件全集（SplitText/MorphSVG 等） |
+| `gsap-react.md` | GSAP 在 React 中的最佳实践 |
+| `gsap-frameworks.md` | GSAP 与 Next.js/Nuxt 等框架集成 |
+| `gsap-performance.md` | GSAP 性能优化 |
+| `gsap-utils.md` | GSAP 工具函数与辅助方法 |
+
+## 📌 来源
+
+本清单中的技能主要精选自以下开源项目与技术社区，部分经过精简适配，去除冗余的辅助文件，保留核心指令。
+
+> [claude-code-templates](https://github.com/davila7/claude-code-templates)（社区聚合 1000+ 组件）
+> [数字生命卡兹克](https://github.com/KKKKhazix)
+> WorkBuddy
