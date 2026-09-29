@@ -25,7 +25,8 @@ DEFAULT_SIZE = "2640x1404"
 AUTHOR = "Python与AI未来"
 
 # 公共裁切安全提示词（封面图：2.35:1，上下各裁 10%）
-COVER_CROP_SAFETY_PREFIX = "【构图】所有文字和视觉元素集中在画面中央区域。顶部和底部各留约10%的等高空白背景边距，不放置任何文字或视觉元素。\n"
+# V3：封面去文字化，只要求主体居中 + 上下留安全余量
+COVER_CROP_SAFETY_PREFIX = "【构图】主体居中偏上，上下边缘各留约10%的安全余量，重要视觉元素不要贴边。画面中禁止出现任何文字、字母、数字、logo、水印。\n"
 
 SKILL_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROMPTS_DIR = os.path.join(SKILL_DIR, "prompts")
