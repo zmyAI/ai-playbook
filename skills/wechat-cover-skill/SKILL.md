@@ -124,3 +124,98 @@ V3 彻底改变：
 ## 触发词
 
 配图、配封面图、生成封面图、公众号封面、cover image、总结卡、课代表总结、文章总结图
+
+---
+
+## 上传封面到公众号后台（2026-10-30 跑通，browser-use-automation plane="bu"）
+
+封面图在本地生成后，需要灌录到公众号草稿作为封面。完整可靠链路如下。
+
+### 前置条件
+
+- 本地已有封面图（建议 2.35:1，3140×1335 左右），路径为绝对路径
+- 公众号后台已登录，拿到当前 `token`（首页 URL 里的 token 参数）
+- 目标草稿的 `appmsgid`（草稿箱卡片 DOM `data-appid` 属性）
+- 编辑页 URL 模板：`https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit&action=edit&type=77&appmsgid={appmsgid}&token={token}&lang=zh_CN`
+
+### 完整步骤（每步附可直接运行的 bu 代码）
+
+```python
+import seed_browser_use as bu
+import time
+
+# 1. 导航到编辑页
+bu.navigate(edit_url)
+time.sleep(3)
+
+# 2. 直接 JS 点「从图片库选择」打开素材库对话框
+#    （不用先点封面区弹菜单，菜单项 .js_imagedialog 始终在 DOM 里）
+bu.js("document.querySelector('.js_imagedialog').click()")
+time.sleep(2)
+
+# 3. 上传本地封面到素材库
+#    上传控件是对话框内隐藏的 file input，accept 含 image
+bu.upload_file("input[type=file][accept*='image']", r"D:\path\to\cover.jpg")
+time.sleep(4)
+
+# 4. 切到「最近使用」分组（新上传的图排最前）
+bu.js("""
+document.querySelectorAll('a').forEach(a => {
+  if (a.textContent.includes('最近使用')) a.click();
+});
+""")
+time.sleep(2)
+
+# 5. 选中第一张图（刚上传的）
+#    选中成功标志：图片项出现绿色边框
+bu.js("""
+const items = document.querySelectorAll('.weui-desktop-img-picker__item');
+if (items.length > 0) items[0].click();
+""")
+time.sleep(1)
+
+# 6. 点「下一步」进入「编辑封面」对话框（等 1-2 秒，按钮选中态才刷新）
+bu.js("""
+const btns = document.querySelectorAll('a, button');
+for (const b of btns) {
+  if (b.textContent.trim() === '下一步' && b.offsetParent !== null) { b.click(); break; }
+}
+""")
+time.sleep(2)
+# 此时截图应看到「编辑封面」标题 + 2.35:1 裁切框
+
+# 7.【关键】「确认」按钮必须用户手动点（自动化点击无效，对话框会关但封面不提交）
+#    调 interaction.request_action(type="browserControl") 请用户点确认
+
+# 8. 用户点完确认后，【立即】保存草稿，绝对不要刷新/导航页面
+bu.js("""
+const btns = document.querySelectorAll('a, button');
+for (const b of btns) {
+  if (b.textContent.trim().includes('保存为草稿') && b.offsetParent !== null) { b.click(); break; }
+}
+""")
+time.sleep(3)
+# 成功标志：页面出现绿色 toast「已保存」，封面缩略图显示在封面区
+```
+
+### 关键坑（血泪教训）
+
+1. **「确认」按钮自动化无效**：JS click / bu.click(ref) / click_xy 都能让对话框关闭，但封面不会提交。**必须用户手动点**。
+2. **用户点完确认后绝对不能刷新或导航**：封面设置在内存里，一刷新就丢（2026-10-30 Figma 稿第一次因此白跑）。确认后第一件事就是点「保存为草稿」。
+3. **不要先点封面区弹菜单**：菜单可能弹不出来（会话级失效），直接 JS 点 `.js_imagedialog` 更可靠。
+4. **上传成功验证**：素材库分组计数 +1（如「最近使用」71→72、「我的图片」52→53）。
+5. **选中图片用 `.weui-desktop-img-picker__item`**：点文件名 div 或图片缩略图本身都可能不触发选中，点这个 class 的容器才出绿框。
+6. **「下一步」要等 1-2 秒**：刚选中就点下一步经常无效，等选中态刷新后再点。
+7. **保存后验证**：绿色「已保存」toast + 封面缩略图显示，两个都看到才算成功。草稿箱列表卡片有封面图是最终验证。
+
+### 相关选择速查
+
+| 操作 | 选择器 / 代码 |
+|------|--------------|
+| 打开素材库 | `document.querySelector('.js_imagedialog').click()` |
+| 上传文件 input | `input[type=file][accept*='image']`（或 `input[accept*="bmp"]`） |
+| 图片项容器 | `.weui-desktop-img-picker__item` |
+| 下一步按钮 | 遍历 `a, button` 找 textContent==="下一步" 且 visible |
+| 保存草稿 | 遍历找 textContent includes "保存为草稿" 且 visible |
+| 封面区（未设置时） | `#js_cover_area`，内含 `.js_cover_btn_area` |
+| 封面菜单（DOM 常驻） | `.js_chooseCoverWrap`，选项含 `.js_imagedialog` / `.js_selectCoverFromContent` / `.js_imageScan` / `.js_aiImage` |
