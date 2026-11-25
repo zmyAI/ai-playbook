@@ -1,3 +1,8 @@
+---
+name: wechat-cover-skill
+description: 为公众号文章生成封面图：按文章主题设计视觉方向与 prompt，调用火山引擎 SeeDream 生图，自动裁切 2.35:1 并生成 1:1 缩略图；另支持竖版总结卡。触发词：配封面图、生成封面、总结卡。
+---
+
 # WeChat Cover Skill V3（公众号封面图生成）
 
 ## 简介
